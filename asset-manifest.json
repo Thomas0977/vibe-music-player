@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/vibe-music-player/static/css/main.67ccc535.css",
+    "main.js": "/vibe-music-player/static/js/main.22afdfa4.js",
+    "index.html": "/vibe-music-player/index.html",
+    "main.67ccc535.css.map": "/vibe-music-player/static/css/main.67ccc535.css.map",
+    "main.22afdfa4.js.map": "/vibe-music-player/static/js/main.22afdfa4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67ccc535.css",
+    "static/js/main.22afdfa4.js"
+  ]
+}
