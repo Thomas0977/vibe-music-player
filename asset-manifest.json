@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/vibe-music-player/static/css/main.b743f4e8.css",
-    "main.js": "/vibe-music-player/static/js/main.4e732269.js",
+    "main.css": "/vibe-music-player/static/css/main.30559d4b.css",
+    "main.js": "/vibe-music-player/static/js/main.b3da4b6f.js",
     "index.html": "/vibe-music-player/index.html",
-    "main.b743f4e8.css.map": "/vibe-music-player/static/css/main.b743f4e8.css.map",
-    "main.4e732269.js.map": "/vibe-music-player/static/js/main.4e732269.js.map"
+    "main.30559d4b.css.map": "/vibe-music-player/static/css/main.30559d4b.css.map",
+    "main.b3da4b6f.js.map": "/vibe-music-player/static/js/main.b3da4b6f.js.map"
   },
   "entrypoints": [
-    "static/css/main.b743f4e8.css",
-    "static/js/main.4e732269.js"
+    "static/css/main.30559d4b.css",
+    "static/js/main.b3da4b6f.js"
   ]
 }
