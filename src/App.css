@@ -1,11 +1,6 @@
-/* ── GLOBAL RESET & BASE ─────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root {
   height: 100%;
@@ -13,103 +8,71 @@ html, body, #root {
   color: #f0f0ff;
   font-family: 'Plus Jakarta Sans', 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-input, button, pre {
-  font-family: inherit;
-}
+input, button, pre { font-family: inherit; }
+::placeholder { color: rgba(255,255,255,0.25); }
 
-::placeholder {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-/* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+/* scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
 
-/* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+/* animations */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes pulse   { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:.3;transform:scale(1.07)} }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50%       { opacity: 0.3; transform: scale(1.07); }
-}
+/* track row */
+.track-row:hover .track-actions { opacity: 1 !important; }
 
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* ── TRACK ROW HOVER ─────────────────────────────────────────────────────── */
-.track-row:hover .track-actions {
-  opacity: 1 !important;
-}
-
-/* ── PLAYLIST CARD DELETE BTN ────────────────────────────────────────────── */
-.pl-card:hover .pl-delete {
-  display: flex !important;
-}
-
-/* ── AMBIENT ORBS ────────────────────────────────────────────────────────── */
+/* ambient orbs */
 .orb1 {
-  position: fixed;
-  top: -15%; left: 8%;
-  width: 500px; height: 500px;
-  border-radius: 50%;
+  position: fixed; top:-15%; left:8%;
+  width: 500px; height: 500px; border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(var(--dr, 124), var(--dg, 58), var(--db, 237), 0.12) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
+    rgba(var(--dr,124),var(--dg,58),var(--db,237),0.12) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
   transition: background 1.5s ease;
 }
-
 .orb2 {
-  position: fixed;
-  bottom: -10%; right: 5%;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(6, 182, 212, 0.07) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
+  position: fixed; bottom:-10%; right:5%;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
 }
 
-/* ── BOTTOM NAV ──────────────────────────────────────────────────────────── */
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(9, 9, 20, 0.97);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 99;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+/* ── DASHBOARD RESPONSIVE GRIDS ─────────────────────────────────────────── */
+
+/* Row 2: Chart | NowPlaying | QuickStats  — 3-col default */
+.dash-row2 { grid-template-columns: 2fr 1fr 1fr; }
+
+/* Row 3: Trending | Artists — 2-col default */
+.dash-row3 { grid-template-columns: 1.4fr 1fr; }
+
+/* Now Playing + Stats Breakdown side by side */
+.dash-row2np { grid-template-columns: 1fr 1.6fr; }
+
+/* ── BREAKPOINTS ──────────────────────────────────────────────────────────── */
+
+/* Tablet: ≤1100px — row2 collapses to 2 columns, quickstats moves below */
+@media (max-width: 1100px) {
+  .dash-row2 { grid-template-columns: 1fr 1fr; }
+  .dash-row2 > *:nth-child(3) { grid-column: 1 / -1; }
+  .dash-row2 > *:nth-child(3) > div { flex-direction: row !important; flex-wrap: wrap; }
 }
 
-/* ── RESPONSIVE BREAKPOINTS ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .desktop-controls {
-    display: none !important;
-  }
-  .mobile-controls {
-    display: flex !important;
-  }
-  .bottom-nav {
-    display: flex !important;
-  }
+/* Small tablet / landscape phone: ≤780px */
+@media (max-width: 780px) {
+  .dash-row2 { grid-template-columns: 1fr; }
+  .dash-row3 { grid-template-columns: 1fr; }
+  .dash-row2np { grid-template-columns: 1fr; }
+  .orb1, .orb2 { display: none; }
 }
 
-@media (max-width: 680px) {
-  .orb1, .orb2 {
-    display: none;
-  }
+/* Mobile: ≤480px */
+@media (max-width: 480px) {
+  .dash-row2 { grid-template-columns: 1fr; }
+  .dash-row3 { grid-template-columns: 1fr; }
 }
